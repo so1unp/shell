@@ -1,0 +1,9 @@
+#
+# renombra a minusculas
+# recibe como parámetro la máscara de archivos a renombrar 
+# OJO: (poner entre comillas la máscara)
+
+for i in $( ls $1 | grep [A-Z] ); do 
+  mv -i $i $(echo $i | tr 'A-Z' 'a-z'); 
+done
+

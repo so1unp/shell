@@ -1,0 +1,5 @@
+#
+# mata los procesos de un usuario
+# recibe como parámetro el nombre del usuario a matar
+
+ps -u $1 | cut -d " " -f 1 | xargs kill -9

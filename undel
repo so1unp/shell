@@ -1,0 +1,17 @@
+#
+# Script para restaurar archivos borrados con script "del"
+#
+# Restaura el archivo pasado como parámetro
+#
+# CB: Junio 2021
+#
+
+#lugar de la papelera
+TRASH=$HOME/.papelera
+arch=${TRASH}/*$1
+
+  
+  #mueve el archivo a la papelera y le agrega la trayectoria completa
+  #del archivo, la cual obtiene con el comando readlink
+  mv $arch $(readlink -f $1 | sed 's/\\/\//g' | sed 's/\*//g')
+

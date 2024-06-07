@@ -1,0 +1,24 @@
+#
+# Script para borrar archivos
+# reemplaza a rm
+# en lugar de borrar lo mueve al directorio de papelera de reciclaje
+# soporta metacaracteres y paths absolutos o relativos al indicar el
+# conjunto de archivos a borrar
+#
+# los archivos que se mueven a la papelera conservan su trayectoria
+# original con "\" en lugar de "/" en la separación de directorios
+#
+# CB: Junio 2019
+#
+
+#lugar de la papelera
+TRASH=$HOME/.papelera
+
+# recorre archivos a borrar
+for arch in $*; do
+  
+  #mueve el archivo a la papelera y le agrega la trayectoria completa
+  #del archivo, la cual obtiene con el comando readlink
+  mv $arch ${TRASH}/$(readlink -f $arch | sed 's/\//\\/g')
+done
+
